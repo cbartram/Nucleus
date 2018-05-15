@@ -59,8 +59,7 @@ if(config.style && config.templatePath !== null) {
 }
 
 // The react template which uses custom styles
-const templateStyle = `
-import React, { Component } from 'react';
+const templateStyle = `import React, { Component } from 'react';
 require('./${config.name}.css');
 
 export default class ${config.name} extends Component {
@@ -69,8 +68,7 @@ export default class ${config.name} extends Component {
   }
 }`
 // React template that does NOT include styles
-const templateOriginal = `
-import React, { Component } from 'react';
+const templateOriginal = `import React, { Component } from 'react';
 
 export default class ${config.name} extends Component {
   render() {
