@@ -16,6 +16,7 @@ let config = {
   style: false,
   dev: false,
   name: null,
+  out: './src/components',
   templatePath: null,
   writePath: null,
 };
@@ -29,6 +30,11 @@ process.argv.forEach(val => {
 
     if(val === "--dev" || val === "-d") {
       config.dev = true;
+    }
+
+    if(val.includes("--out")) {
+      console.log(chalk.green("[Nucleus] Using Custom Output Location \u2713"));
+      config.out = val.substring(val.indexOf('=') + 1);
     }
 
     if(val.includes("--template")) {
@@ -72,7 +78,7 @@ export default class ${config.name} extends Component {
   }
 }`
 
-exec(`cd ./src/components && mkdir ${config.name} && cd ./${config.name}`, (err, stdout, stderr) => {
+exec(`cd ${config.out} && mkdir ${config.name} && cd ./${config.name}`, (err, stdout, stderr) => {
     if (err) {
         console.log(chalk.red(`[Nucleus] Failed to create directory please specify a component name and ensure the folder does not exist!`));
         console.log(chalk.red(`[Nucleus] For Example: ./nucleus Auth --style`));
@@ -81,7 +87,7 @@ exec(`cd ./src/components && mkdir ${config.name} && cd ./${config.name}`, (err,
         }
         return;
     }
-    config.writePath = `./src/components/${config.name}`
+    config.writePath = `${config.out}/${config.name}`
     console.log(chalk.green(`[Nucleus] Successfully Created Directory: ${config.name} \u2713`));
     console.log(chalk.green('[Nucleus] Creating Component... \u2713'))
 
