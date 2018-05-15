@@ -1,4 +1,4 @@
-<p class="center">
+<p align="center">
   <img src="https://i.imgur.com/73gFLON.png" alt="nucleus logo" />
 </p>
 
@@ -6,6 +6,11 @@
 
 Nucleus is a small tool to help you quickly create React Components without all the boilerplate and hassle! It is designed for Mac's and works
 even with machines which don't have Node JS installed!
+
+<p align="center">
+  <img src="https://s3.amazonaws.com/aeroscape-cache/Nucleus-Demo.gif" alt="nucleus demo" />
+</p>
+
 
 ## Getting Started
 
@@ -31,7 +36,7 @@ will create a new `Auth` directory and React component which will end up looking
 
 If your app does not have this directory ensure you specify the `--out=/your/custom/path` flag to determine where your component will be written.
 
-You can also use different flags like `--style` and  `--dev` to automatically create and link a css file to the created component and run dev mode respectively.
+Check out some more program arguments below!
 
 ## Program Arguments
 
@@ -57,6 +62,8 @@ The table below helps to show the different program arguments and how to use the
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
+If you are interested in creating a new feature just add an issue on the repository with a description of the feature!
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
@@ -64,8 +71,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Christian Bartram** - *Initial work* - [Cbartram](https://github.com/cbartram)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
