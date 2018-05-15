@@ -1,0 +1,27 @@
+{
+  "name": "nucleus",
+  "version": "1.0.0",
+  "description": "Creates a new react component for you! ",
+  "main": "./src/index.js",
+  "bin": "./src/index.js",
+  "scripts": {
+    "package": "pkg . --targets node6-macos --out",
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "create",
+    "react",
+    "component",
+    "frontend",
+    "javascript"
+  ],
+  "author": "cbartram",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
+  "pkg": {
+    "assets": "./node_modules/figlet/fonts/Standard.flf"
+  }
+}
