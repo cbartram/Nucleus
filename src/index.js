@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const { exec, execSync } = require('child_process');
+const fs = require('fs');
 
 const firstToCaps = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -7,7 +8,7 @@ const firstToCaps = (string) => {
 
 //Configuration object used throughout the application
 let config = {
-    version: '1.0.0',
+    version: JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version,
     style: false,
     dev: false,
     name: null,

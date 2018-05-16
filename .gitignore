@@ -2,7 +2,6 @@ node_modules/
 .env
 out/
 dist/
-build/
 .DS_STORE
 *.idea
 *.iml

@@ -1,11 +1,14 @@
 {
   "name": "nucleus",
   "version": "1.0.0",
-  "description": "Creates a new react component for you! ",
+  "description": "Nucleus creates basic react component for you quickly and simply!",
+  "repository": "https://github.kdc.capitalone.com/ilp281/Nucleus",
   "main": "./src/index.js",
-  "bin": "./src/index.js",
+  "bin": {
+    "nucleus": "./build/main.js"
+  },
   "scripts": {
-    "package": "mkdir -p build && npx babel ./src/index.js --out-file ./build/main.js && pkg ./build/main.js --targets node6-macos --output ./bin/nucleus",
+    "package": "mkdir -p build && npx babel ./src/index.js --out-file ./build/main.js && pkg ./build/main.js --targets node6-macos --output ./bin/nucleus && chmod +x ./build/main.js",
     "start": "node ./src/index.js Foo --dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
