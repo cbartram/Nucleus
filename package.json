@@ -5,8 +5,8 @@
   "main": "./src/index.js",
   "bin": "./src/index.js",
   "scripts": {
-    "package": "pkg . --targets node6-macos --out",
-    "start": "nodemon ./src/index.js",
+    "package": "mkdir -p build && npx babel ./src/index.js --out-file ./build/main.js && pkg ./build/main.js --targets node6-macos --output ./bin/nucleus",
+    "start": "node ./src/index.js Foo --dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,7 +21,13 @@
   "dependencies": {
     "chalk": "^2.4.1"
   },
-  "pkg": {
-    "assets": "./node_modules/figlet/fonts/Standard.flf"
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }
