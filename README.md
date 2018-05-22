@@ -88,7 +88,7 @@ produces the following directory structure:
 │   │   └── index.js
 ├── test
 │   └── index.test.js
-├── Auth + 
+├── Auth +
 │   └── Auth.js +
 └── package.json
 ```
@@ -106,7 +106,7 @@ produces the following directory structure:
 │   │   └── index.js
 ├── test
 │   └── index.test.js
-├── Auth + 
+├── Auth +
 │   └── Auth.js +
 │   └── Auth.css +
 └── package.json
@@ -123,7 +123,7 @@ produces the following directory structure:
 │   ├── components
 │   │   ├── App.js
 │   │   └── index.js
-│   │   └──── Auth + 
+│   │   └──── Auth +
 │   │        └── Auth.js +
 │   │        └── Auth.css +
 ├── test
@@ -140,7 +140,7 @@ produces the following directory structure:
 │   ├── components
 │   │   ├── App.js
 │   │   └── index.js
-│   │   └──── Auth + 
+│   │   └──── Auth +
 │   │        └── Auth.js +
 ├── test
 │   └── index.test.js
@@ -152,7 +152,7 @@ produces the following directory structure:
 `nucleus Auth --functional`
 
 would produce the following directory structure:
- 
+
  ```
  ├── src
  │   ├── components
@@ -160,19 +160,19 @@ would produce the following directory structure:
  │   │   └── index.js
  ├── test
  │   └── index.test.js
- ├── Auth + 
+ ├── Auth +
  │   └── Auth.js + (is a functional component)
  └── package.json
  ```
- 
+
  ### Creating a plain component
- 
+
  A plain component does not have any associated directory with it and just includes the normal JS File.
- 
- `nucleus Auth --plain --style` 
- 
+
+ `nucleus Auth --plain --style`
+
  would produce the following directory structure
- 
+
   ```
   ├── src
   │   ├── components
@@ -180,7 +180,7 @@ would produce the following directory structure:
   │   │   └── index.js
   ├── test
   │   └── index.test.js
-  ├── Auth.js + 
+  ├── Auth.js +
   ├── style.css + (we include the styles just not the directory)
   └── package.json
   ```
