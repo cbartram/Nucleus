@@ -1,0 +1,42 @@
+{
+  "name": "react-nucleus",
+  "version": "1.0.6",
+  "description": "Nucleus creates basic react components for you quickly and simply!",
+  "repository": "https://github.com/cbartram/Nucleus",
+  "main": "./src/index.js",
+  "bin": {
+    "nucleus": "./build/main.js"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js && chmod +x ./build/main.js && echo \"#!/usr/bin/env node\" | cat - ./build/main.js > ./build/main2.js && mv ./build/main2.js ./build/main.js",
+    "start": "node ./src/nucleus.js MyNewComponent --style -f --dev && rm -rf ./MyNewComponent",
+    "test": "./node_modules/mocha/bin/mocha ./test/index.test.js --timeout 10000 --exit"
+  },
+  "keywords": [
+    "create",
+    "react",
+    "component",
+    "frontend",
+    "javascript"
+  ],
+  "author": "cbartram",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
