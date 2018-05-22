@@ -6,9 +6,6 @@
 
 Nucleus is a lightweight tool to help you quickly create React Components without all the boilerplate and hassle! It is designed for Mac's specifically and can be run from a simple global command `nucleus`!
 
-<p align="center">
-  <img src="https://s3.amazonaws.com/aeroscape-cache/Nucleus-Demo.gif" alt="nucleus demo" />
-</p>
 
 ## Getting Started
 
