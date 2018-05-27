@@ -242,4 +242,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * React for making a great framework!
+* A **huge** thank you to Erika for supporting me and letting me do my codes. 
 * Big thanks to Jake, Taimore, and Adam for inspiring this cool little tool! (would love to work with you guys to further improve it!)
