@@ -56,6 +56,7 @@ The table below helps to show the different program arguments and how to use the
 | --dev          | `nucleus Auth --dev`                              | -d           | Runs the application in developer mode and shows additional error logging to the console.                                                            | false        |
 | --functional   | `nucleus Auth --functional`                       | -f           | Creates a functional react component instead of a traditional component                                                                              | false        |
 | --plain        | `nucleus Auth --plain`                            | -p           | Creates **just** the javascript file and no enclosing directory                                                                                      | false        |
+| --quiet       | `nucleus Auth --quiet`                            | -q           | Hides most of the console output when executing the command                                                                                      | false        |
 
 
 ## Examples
