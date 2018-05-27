@@ -12,14 +12,18 @@ module.exports = (config, args) => {
         config.name = firstToCaps(val);
       }
 
+      if(val === "--quiet" || val == "-q") {
+        config.quiet = true;
+      }
+
       if(val === "--plain" || val === "-p") {
           config.plain = true;
-          console.log(chalk.green('[Nucleus] Using plain React Template'))
+          !config.quiet && console.log(chalk.green('[Nucleus] Using plain React Template'))
       }
 
       if(val === "--functional" || val === "-f") {
         config.functional = true;
-        console.log(chalk.green(`[Nucleus] Using functional component template \u2713`));
+        !config.quiet && console.log(chalk.green(`[Nucleus] Using functional component template \u2713`));
       }
 
       if(val === "--version" || val === "-v") {
@@ -31,18 +35,18 @@ module.exports = (config, args) => {
       }
 
       if(val.includes("--out")) {
-        console.log(chalk.green("[Nucleus] Using Custom Output Location \u2713"));
+        !config.quiet && console.log(chalk.green("[Nucleus] Using Custom Output Location \u2713"));
         config.out = val.substring(val.indexOf('=') + 1);
       }
 
       if(val.includes("--template")) {
-        console.log(chalk.green("[Nucleus] Using Custom Template \u2713"));
+        !config.quiet && console.log(chalk.green("[Nucleus] Using Custom Template \u2713"));
         config.templatePath = val.substring(val.indexOf("=") + 1).trim();
         config.templateFileName = val.substring(val.lastIndexOf('/') + 1).trim();
       }
 
       if(val === "--style" || val === "-s") {
-          console.log(chalk.green("[Nucleus] Creating Stylesheet \u2713"));
+          !config.quiet && console.log(chalk.green("[Nucleus] Creating Stylesheet \u2713"));
           config.style = true;
       }
   });

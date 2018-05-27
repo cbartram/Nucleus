@@ -4,6 +4,7 @@ const firstToCaps = require('../src/cli/capitalize.js');
 const parse = require('../src/cli/parse.js');
 const error = require('../src/error.js');
 const template = require('../src/template.js');
+const config = require('../config/config.js');
 
 describe('Functional Tests', () => {
   it('Capitalizes the first letter of a word', (done) => {
@@ -13,15 +14,35 @@ describe('Functional Tests', () => {
     done();
   });
 
+
+  it('Ensures the configuration file is valid', (done) => {
+    expect(config).to.be.an('object').that.deep.equals({
+      version: '1.0.6',
+      quiet: false,
+      plain: false, // True if we should not use a directory and use just a simple js file
+      style: false, // True if we should include a stylesheet
+      functional: false, //True if we should use the functional template
+      dev: false,
+      name: null,
+      out: '.',
+      templatePath: null,
+      templateFileName: null,
+      writePath: null,
+    })
+
+    done();
+  });
+
   it('Correctly Parses CLI Arguments', (done) => {
-      let parsed = parse({}, ['-f', '--style', '--dev', '--out=./foo', '--template=./'])
+      let parsed = parse({}, ['-f', '--style', '--quiet', '--dev', '--out=./foo', '--template=./foo.js'])
       expect(parsed).to.be.a('object').that.deep.equals({
         functional: true,
         dev: true,
         style: true,
         out: './foo',
-        templatePath: './',
-        templateFileName: ''
+        quiet: true,
+        templatePath: './foo.js',
+        templateFileName: 'foo.js'
       });
       done();
   });

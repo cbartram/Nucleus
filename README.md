@@ -190,6 +190,8 @@ Say for instance you have tons of components you need to make which all need to 
 
 You can use a template of a previously created (Container wrapped) component to quickly create all your new components!
 
+For example `nucleus Auth --template=./component/templates/YourTemplate.js` will use the `YourTemplate.js` file as a copy for Auth.
+
 ## Handling Nucleus Errors
 
 Often times nucleus will give you errors saying that it cannot find the right path or location to create your component in.
@@ -212,6 +214,8 @@ which would command nucleus to create your component in `/Users/abc123/MyProject
 
 * [NodeJS](http://www.dropwizard.io/1.0.2/docs/) - Javascript event driven non blocking server side framework
 * [PKG](https://github.com/zeit/pkg) - Executable packager
+* [Babel](https://babeljs.io/) - Javascript next gen compiler
+* [Webpack](https://webpack.js.org/) - Module Bundler
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [Git](https://git-scm.com/) - Version Control System
 * [Chalk](https://www.npmjs.com/package/chalk) - Colored Console Output
@@ -226,9 +230,16 @@ If you are interested in creating a new feature just add an issue on the reposit
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
+
+## FAQ
+
+- **How do I download Nucleus?** Nucleus can be downloaded via [NPM](https://www.npmjs.com/packages/react-nucleus) using the command `npm install -g react-nucleus`
+- **How do I run Nucleus once its installed** Nucleus can be run in any terminal using the `nucleus` keyword. Try `nucleus -v` to make sure you have it installed correctly.
+- **Can I specify an output directory for Nucleus** Sure just use the `--out=./YOUR/RELATIVE/OUTPUT/DIR` command line flag.
+
 ## Authors
 
-* **Christian Bartram** - *Initial work* - [Cbartram](https://github.com/cbartram)
+* **Christian Bartram** - *Lead Developer* - [Cbartram](https://github.com/cbartram)
 
 ## Why "Nucleus"
 
@@ -242,5 +253,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * React for making a great framework!
-* A **huge** thank you to Erika for supporting me and letting me do my codes. 
-* Big thanks to Jake, Taimore, and Adam for inspiring this cool little tool! (would love to work with you guys to further improve it!)
+* A **huge** thank you to Erika for supporting me and letting me do my codes.
+* Big thanks to Jake, Taimore, and Adam for inspiring this cool little tool!

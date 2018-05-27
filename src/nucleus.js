@@ -94,8 +94,10 @@ exec(`cd ${config.out} && mkdir ${config.name} && cd ./${config.name}`, (err) =>
 
   config.writePath = `${config.out}/${config.name}`;
 
-  console.log(chalk.green(`[Nucleus] Successfully Created Directory: ${config.name} \u2713`));
-  console.log(chalk.green('[Nucleus] Creating Component... \u2713'));
+  if(!config.quiet) {
+    console.log(chalk.green(`[Nucleus] Successfully Created Directory: ${config.name} \u2713`));
+    console.log(chalk.green('[Nucleus] Creating Component... \u2713'));
+  }
 
   //Create a custom stylesheet component
   if(config.style) {

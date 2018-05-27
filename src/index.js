@@ -41,24 +41,24 @@ process.argv.forEach(val => {
     }
 
     if(val.includes("--out")) {
-      console.log(chalk.green("[Nucleus] Using Custom Output Location \u2713"));
+      !config.quiet && console.log(chalk.green("[Nucleus] Using Custom Output Location \u2713"));
       config.out = val.substring(val.indexOf('=') + 1);
     }
 
     if(val.includes("--template")) {
-      console.log(chalk.green("[Nucleus] Using Custom Template \u2713"));
+      !config.quiet && console.log(chalk.green("[Nucleus] Using Custom Template \u2713"));
       config.templatePath = val.substring(val.indexOf("=") + 1);
     }
 
     if(val === "--style" || val === "-s") {
-        console.log(chalk.green("[Nucleus] Creating Stylesheet \u2713"));
+        !config.quiet && console.log(chalk.green("[Nucleus] Creating Stylesheet \u2713"));
         config.style = true;
     }
 });
 
 //Check for dev
 if(config.dev) {
-  console.log(chalk.blueBright(`[Nucleus Dev] Config -> ${JSON.stringify(config)}`));
+  !config.quiet && console.log(chalk.blueBright(`[Nucleus Dev] Config -> ${JSON.stringify(config)}`));
 }
 
 //If template is set and style is set then throw error;
