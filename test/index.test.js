@@ -1,4 +1,3 @@
-/* global describe it */
 const { expect } = require('chai');
 const firstToCaps = require('../src/capitalize');
 const parse = require('../src/parse');
@@ -7,12 +6,6 @@ const template = require('../src/template');
 const config = require('../config/config');
 
 describe('Nucleus - Tests', () => {
-
-  describe('Nucleus - Functionality', () => {
-    
-  });
-
-
   describe('Nucleus - Helper Functions', () => {
     it('Capitalizes the first letter of a word', (done) => {
       expect(firstToCaps('foo')).to.be.a('string').that.equals('Foo');
@@ -37,7 +30,7 @@ describe('Nucleus - Tests', () => {
     });
 
 
-    it('Ensures the configuration file is valid', (done) => {
+    it('Validates configuration file', (done) => {
       expect(config).to.be.an('object').that.deep.equals({
         version: '1.0.6',
         quiet: false,

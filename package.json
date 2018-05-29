@@ -45,6 +45,10 @@
   },
   "eslintConfig": {
     "extends": "airbnb-base",
+    "globals": {
+      "describe": true,
+      "it": true
+    },
     "rules": {
       "no-console": 0,
       "no-useless-escape": 0,
