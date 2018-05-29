@@ -26,12 +26,11 @@ module.exports = (config) => {
    <div>${config.name}</div>
   );
 
-  export default ${config.name};`
+  export default ${config.name};`;
 
   return {
     style: templateStyle,
     default: templateOriginal,
-    functional: templateFunctional
+    functional: templateFunctional,
   };
-
 };

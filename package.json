@@ -10,7 +10,9 @@
   "scripts": {
     "build": "webpack --config webpack.config.js && chmod +x ./build/main.js && echo \"#!/usr/bin/env node\" | cat - ./build/main.js > ./build/main2.js && mv ./build/main2.js ./build/main.js",
     "start": "node ./src/nucleus.js MyNewComponent --style -f --dev && rm -rf ./MyNewComponent",
-    "test": "./node_modules/mocha/bin/mocha ./test/index.test.js --timeout 10000 --exit"
+    "test": "./node_modules/mocha/bin/mocha ./test/index.test.js --timeout 10000 --exit",
+    "lint": "./node_modules/.bin/eslint **/*.js --quiet --ignore-pattern node_modules/ build/ bin/ .git/",
+    "fix": "./node_modules/.bin/eslint **/*.js --quiet --ignore-pattern node_modules/ build/*.js bin/ .git/  --fix"
   },
   "keywords": [
     "create",
@@ -38,5 +40,13 @@
     "presets": [
       "env"
     ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "no-console": 0,
+      "no-useless-escape": 0,
+      "no-lonely-if": 0
+    }
   }
 }
