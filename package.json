@@ -23,7 +23,8 @@
   "author": "cbartram",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
