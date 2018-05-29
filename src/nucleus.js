@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const parse = require('./cli/parse.js');
+const parse = require('./parse');
 const template = require('./template');
 const error = require('./error');
 const config = parse(require('../config/config'), process.argv);
@@ -24,43 +24,36 @@ if (config.dev) {
 // Basic Error Checking
 if (config.style && config.templatePath !== null) {
   error('', config, '[Nucleus] Cannot use both --template and --style');
-  process.exit(1);
 }
 
 if (config.functional && config.templatePath !== null) {
   error('', config, '[Nucleus] Cannot use both --template and --functional');
-  process.exit(1);
 }
 
 
 if (config.templatePath !== null && config.plain) {
   error('', config, '[Nucleus] Cannot use both --template and --plain');
-  process.exit(1);
 }
 
 if (config.style && config.functional) {
   error('', config, '[Nucleus] Cannot use both --style and --functional');
-  process.exit(1);
 }
 
 
 if (config.templatePath !== null) {
   if (config.templateFileName === '') {
     error('', config, '[Nucleus] The template file must be a valid Javascript (.js) file.');
-    process.exit(0);
   }
 
   if (!fs.existsSync(config.templatePath)) {
     error('', config, `[Nucleus] Could not locate the template file: ${config.templatePath}`);
-    process.exit(0);
   }
 }
 
 // Try creating plain first because it does not require a dir
 if (config.plain) {
   if (config.style) {
-    execSync(`echo "${templates.style}" > ${config.out}/${config.name}.js`);
-    execSync(`touch ${config.out}/${config.name}.css`);
+    execSync(`echo "${templates.style}" > ${config.out}/${config.name}.js && touch ${config.out}/${config.name}.css`);
     console.log(chalk.green('[Nucleus] Successfully created plain React Component with styles!'));
   } else if (config.functional) {
     execSync(`echo "${templates.functional}" > ${config.out}/${config.name}.js`);
@@ -69,6 +62,7 @@ if (config.plain) {
     execSync(`echo "${templates.default}" > ${config.out}/${config.name}.js`);
     console.log(chalk.green('[Nucleus] Successfully created plain React Component!'));
   }
+
   process.exit(0);
 }
 
