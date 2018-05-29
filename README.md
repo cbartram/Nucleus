@@ -2,6 +2,11 @@
   <img src="https://i.imgur.com/73gFLON.png" alt="nucleus logo" />
 </p>
 
+[![Build Status](https://travis-ci.org/cbartram/Nucleus.svg?branch=master)](https://travis-ci.org/cbartram/Nucleus)
+[![npm](https://img.shields.io/npm/dw/localeval.svg)](https://www.npmjs.com/package/react-nucleus)
+![npm](https://img.shields.io/npm/v/npm.svg)
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/cbartram2)
+
 # Nucleus
 
 Nucleus is a lightweight tool to help you quickly create React Components without all the boilerplate and hassle! It is designed for Mac's specifically and can be run from a simple global command `nucleus`!
