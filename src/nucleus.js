@@ -8,7 +8,7 @@ const { exec, execSync } = require('child_process');
 const program = require('commander');
 const config = parse(require('../config/config'), process.argv);
 
-const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')));
+const { version } = require('../package.json');
 
 /**
  * Simply prints the Nucleus intro

@@ -26,7 +26,7 @@ Nucleus is easy to use and only requires one command line argument!
 
 `nucleus List`
 
-By default nucleus will create the component in the root directory where it is run (e.g. `./`) however this can be changed with the `--out` flag
+By default nucleus will create the component in the directory where it is executed from (e.g. `./`) however this can be changed with the `--out` flag
 
 Nucleus will create a new `List` directory and React component which will end up looking like this!
 ```
@@ -54,15 +54,15 @@ The table below helps to show the different program arguments and how to use the
 
 | **Argument**   | **Example**                                       | **Shortcut** | **Description**                                                                                                                                      | **Required** |
 | -------------- | ------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Component name | `nucleus Auth`                                    | None         | In the example `Auth` is the component name!                                                                                                         | true         |
-| --out          | `nucleus Auth --out=/src/pages/`                  | None         | The `--out` argument defines the output where the component will be written. By default this is `./`                                                 | false        |
-| --style        | `nucleus Auth --style`                            | -s           | This will scaffold a stylesheet along with the react component and import the stylesheet automatically into the component                            | false        |
-| --template     | `nucleus Auth --template=/src/components/List.js` | None         | This flag will allow you to use a custom React JS file as a template to create your new component. Ensure the path leads to a valid javascript file! | false        |
-| --dev          | `nucleus Auth --dev`                              | -d           | Runs the application in developer mode and shows additional error logging to the console.                                                            | false        |
-| --functional   | `nucleus Auth --functional`                       | -f           | Creates a functional react component instead of a traditional component                                                                              | false        |
-| --plain        | `nucleus Auth --plain`                            | -p           | Creates **just** the javascript file and no enclosing directory                                                                                      | false        |
-| --quiet       | `nucleus Auth --quiet`                            | -q           | Hides most of the console output when executing the command                                                                                      | false        |
-
+| Component name | `nucleus -n Auth`                                    | -n         | In the example `Auth` is the component name!                                                                                                         | true         |
+| --out          | `nucleus --name Auth --out ./src/pages/`                  | -o         | The `--out` argument defines the output where the component will be written. By default this is `./`                                                 | false        |
+| --style        | `nucleus --name Auth --style`                            | -s           | This will scaffold a stylesheet along with the react component and import the stylesheet automatically into the component                            | false        |
+| --template     | `nucleus --name Auth --template ./src/components/List.js` | -t         | This flag will allow you to use a custom React JS file as a template to create your new component. Ensure the path leads to a valid javascript file! | false        |
+| --dev          | `nucleus --name Auth --dev`                              | -d           | Runs the application in developer mode and shows additional error logging to the console.                                                            | false        |
+| --functional   | `nucleus --name Auth --functional`                       | -f           | Creates a functional react component instead of a traditional component                                                                              | false        |
+| --plain        | `nucleus --name Auth --plain`                            | -p           | Creates **just** the javascript file and no enclosing directory                                                                                      | false        |
+| --quiet       | `nucleus --name Auth --quiet`                            | -q           | Hides most of the console output when executing the command                                                                                      | false        |
+| --help      | `nucleus --help`                            | -h          | Shows a panel of nucleus commands and command line flags command                                                                                      | false        |
 
 ## Examples
 
@@ -80,7 +80,7 @@ and new additions will be denoted with the `+` character.
 
 ### Create A Basic Component called Auth
 
-`nucleus Auth`
+`nucleus -n Auth`
 
 produces the following directory structure:
 
@@ -98,7 +98,7 @@ produces the following directory structure:
 
 ### Create a Basic Component with associated stylesheet
 
-`nucleus Auth --style`
+`nucleus -n Auth --style`
 
 produces the following directory structure:
 
@@ -117,7 +117,7 @@ produces the following directory structure:
 
 ### Create a new component in a specific location with styles
 
-`nucleus Auth --style --out=./src/components/`
+`nucleus -n Auth --style --out ./src/components/`
 
 produces the following directory structure:
 
@@ -136,7 +136,7 @@ produces the following directory structure:
 
 ### Create a component in a specific location using a template
 
-`nucleus Auth --out=./src/components/ --template=./src/components/App.js`
+`nucleus -n Auth --out ./src/components/ --template ./src/components/App.js`
 
 ```
 ├── src
@@ -152,7 +152,7 @@ produces the following directory structure:
 
 ### Create a basic functional component (instead of ES6 Class based)
 
-`nucleus Auth --functional`
+`nucleus -n Auth --functional`
 
 would produce the following directory structure:
 
@@ -172,7 +172,7 @@ would produce the following directory structure:
 
  A plain component does not have any associated directory with it and just includes the normal JS File.
 
- `nucleus Auth --plain --style`
+ `nucleus -n Auth --plain --style`
 
  would produce the following directory structure
 
@@ -190,29 +190,29 @@ would produce the following directory structure:
 
 ## Nucleus Templates
 
-The `--template=./path/to/your/component.js` is a powerful way to create new components based on previous components.
+The `--template ./path/to/your/component.js` is a powerful way to create new components based on previous components.
 
 Say for instance you have tons of components you need to make which all need to be wrapped in a `<Container />` component in the render method.
 
 You can use a template of a previously created (Container wrapped) component to quickly create all your new components!
 
-For example `nucleus Auth --template=./component/templates/YourTemplate.js` will use the `YourTemplate.js` file as a copy for Auth.
+For example `nucleus -n Auth --template ./component/templates/YourTemplate.js` will use the `YourTemplate.js` file as a copy for Auth.
 
 ## Handling Nucleus Errors
 
 Often times nucleus will give you errors saying that it cannot find the right path or location to create your component in.
 
-If you do not want to use the predefined location of your root directory (`./`) you **must** specify the option `--out=./path/to/your/components`
+If you do not want to use the predefined location of your root directory (`./`) you **must** specify the option `--out ./path/to/your/components`
 
 Its **very** important that you include the `.` before the path this way Nucleus knows to create the component in your current directory since it does not use absolute paths.
 
 For Example:
 
-`nucleus List --out=/src/components/pages`
+`nucleus -n List --out ./src/components/pages`
 
 would tell nucleus to search from your computers root `/` for a directory called `src` compared to
 
-`nucleus List --out=./src/components/pages`
+`nucleus -n List --out ./src/components/pages`
 
 which would command nucleus to create your component in `/Users/abc123/MyProject/src/components/pages` which is the correct location.
 
@@ -240,8 +240,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## FAQ
 
 - **How do I download Nucleus?** Nucleus can be downloaded via [NPM](https://www.npmjs.com/packages/react-nucleus) using the command `npm install -g react-nucleus`
-- **How do I run Nucleus once its installed** Nucleus can be run in any terminal using the `nucleus` keyword. Try `nucleus -v` to make sure you have it installed correctly.
-- **Can I specify an output directory for Nucleus** Sure just use the `--out=./YOUR/RELATIVE/OUTPUT/DIR` command line flag.
+- **How do I run Nucleus once its installed** Nucleus can be run in any terminal using the `nucleus` keyword. Try `nucleus -V` to make sure you have it installed correctly You should see the latest version appear in the console.
+- **Can I specify an output directory for Nucleus** Sure just use the `--out ./YOUR/RELATIVE/OUTPUT/DIR` command line flag.
+- **It keeps saying the --name flag is required** `--name` is the only required command line argument to nucleus try `nucleus --name YOUR_COMPONENTS_NAME`.
+- **Can I create multiple components at the same time?** Not yet but its coming soon! 
 
 ## Authors
 

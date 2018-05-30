@@ -1,6 +1,6 @@
 {
   "name": "react-nucleus",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Nucleus creates basic react components for you quickly and simply!",
   "repository": "https://github.com/cbartram/Nucleus",
   "main": "./src/index.js",
