@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/nucleus.js',
+  entry: './src/index.js',
   target: 'node',
   mode: 'production',
   output: {

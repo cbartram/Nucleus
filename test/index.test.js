@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 const firstToCaps = require('../src/capitalize');
-const parse = require('../src/parse');
 const error = require('../src/error');
 const template = require('../src/template');
 const config = require('../config/config');
@@ -52,28 +51,6 @@ describe('Nucleus - Tests', () => {
   describe('Nucleus - Error Handler', () => {
     it('Correctly renders an error message', (done) => {
       expect(error('error', { name: 'Foo' }, '', false)).to.be.a('boolean').that.equals(true);
-      done();
-    });
-  });
-
-  describe('Nucleus - Parser', () => {
-    it('Correctly Parses CLI Arguments', (done) => {
-      const parsed = parse(config, ['--quiet', 'Auth', '-f', '-p', '--style', '--dev', '--out=./foo', '--template=./foo.js']);
-
-      expect(parsed).to.be.a('object').that.deep.equals({
-        functional: true,
-        dev: true,
-        plain: true,
-        version: '1.0.6',
-        writePath: null,
-        style: true,
-        name: 'Auth',
-        out: './foo',
-        quiet: true,
-        templatePath: './foo.js',
-        templateFileName: 'foo.js',
-      });
-
       done();
     });
   });
