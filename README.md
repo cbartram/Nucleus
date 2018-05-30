@@ -24,7 +24,7 @@ Note: Since this is a global npm package you may need use `sudo` to install it c
 
 Nucleus is easy to use and only requires one command line argument!
 
-`nucleus List`
+`nucleus --name List`
 
 By default nucleus will create the component in the directory where it is executed from (e.g. `./`) however this can be changed with the `--out` flag
 
@@ -243,7 +243,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - **How do I run Nucleus once its installed** Nucleus can be run in any terminal using the `nucleus` keyword. Try `nucleus -V` to make sure you have it installed correctly You should see the latest version appear in the console.
 - **Can I specify an output directory for Nucleus** Sure just use the `--out ./YOUR/RELATIVE/OUTPUT/DIR` command line flag.
 - **It keeps saying the --name flag is required** `--name` is the only required command line argument to nucleus try `nucleus --name YOUR_COMPONENTS_NAME`.
-- **Can I create multiple components at the same time?** Not yet but its coming soon! 
+- **Can I create multiple components at the same time?** Not yet but its coming soon!
 
 ## Authors
 
