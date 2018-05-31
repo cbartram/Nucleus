@@ -5,12 +5,12 @@ const template = require('../src/template');
 
 describe('Nucleus - Tests', () => {
   describe('Nucleus - Helper Functions', () => {
-    it('Capitalizes the first letter of a word', (done) => {
+    it('Transitions: foo -> Foo', (done) => {
       expect(firstToCaps('foo')).to.be.a('string').that.equals('Foo');
       done();
     });
 
-    it('Validates Nucleus File Templates', (done) => {
+    it('Validates Nucleus Component Templates', (done) => {
       expect(template).to.be.a('function');
 
       const templateObj = template({
