@@ -23,5 +23,3 @@ module.exports = {
   ]
 }
 };
-//https-proxy = "http://entproxy.kdc.capitalone.com:8099/"
-//proxy = "http://entproxy.kdc.capitalone.com:8099/"

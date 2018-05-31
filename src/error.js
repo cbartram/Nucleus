@@ -1,7 +1,15 @@
 const chalk = require('chalk');
 
+/**
+ * Handles rendering an error message and exiting cleanly
+ * @param err Error object from try catch
+ * @param message String custom error message
+ * @param exit Boolean true if the process should quit false otherwise
+ */
 module.exports = (err, message, exit = true) => {
-  console.log(chalk.red(message));
+  if (message) {
+    console.log(chalk.red(message));
+  }
 
   if (err) {
     console.log(chalk.red(`[Nucleus] ${err}`));

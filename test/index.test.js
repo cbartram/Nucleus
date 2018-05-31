@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const firstToCaps = require('../src/capitalize');
 const error = require('../src/error');
 const template = require('../src/template');
-const config = require('../config/config');
 
 describe('Nucleus - Tests', () => {
   describe('Nucleus - Helper Functions', () => {
@@ -27,30 +26,11 @@ describe('Nucleus - Tests', () => {
 
       done();
     });
-
-
-    it('Validates configuration file', (done) => {
-      expect(config).to.be.an('object').that.deep.equals({
-        version: '1.0.6',
-        quiet: false,
-        plain: false,
-        style: false,
-        functional: false,
-        dev: false,
-        name: null,
-        out: '.',
-        templatePath: null,
-        templateFileName: null,
-        writePath: null,
-      });
-
-      done();
-    });
   });
 
   describe('Nucleus - Error Handler', () => {
     it('Correctly renders an error message', (done) => {
-      expect(error('error', { name: 'Foo' }, '', false)).to.be.a('boolean').that.equals(true);
+      expect(error(null, null, false)).to.be.a('boolean').that.equals(true);
       done();
     });
   });

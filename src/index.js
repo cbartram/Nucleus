@@ -1,1 +1,1 @@
-require('./nucleus').run()
+require('./nucleus').run();

@@ -1,9 +1,13 @@
-const fs = require('fs');
 const chalk = require('chalk');
 const template = require('./template');
 const error = require('./error');
-const { exec, execSync } = require('child_process');
+const { exec } = require('child_process');
 const program = require('commander');
+
+// Modules to create components
+const checkTemplateError = require('./exec/checkTemplateError');
+const createPlainComponent = require('./exec/createPlainComponent');
+const create = require('./exec/create');
 
 /**
  * Simply prints the Nucleus intro
@@ -20,6 +24,8 @@ const intro = () => {
 };
 
 // Parse CLI Arguments
+// TODO use Regex to ensure --name does not contain any invalid
+// TODO JS classname characters like \-/.,\{}()*&^%$#@![0-9]\g
 program
   .version('1.0.9')
   .option('-n, --name <name>, Specify a name for the component')
@@ -32,8 +38,9 @@ program
   .option('-q, --quiet', 'Runs Nucleus in development mode for more verbose errors.')
   .parse(process.argv);
 
-module.exports = {
 
+// Executes the program
+module.exports = {
   run: () => {
     if (!program.quiet) {
       intro();
@@ -65,41 +72,13 @@ module.exports = {
     }
 
     // Create template initialization
-    const templates = template({
-      name: program.name,
-    });
+    const templates = template(program.name);
 
-    /**
-    * Template Error Checking
-    */
-    if (program.template) {
-      program.templateFileName = program.template.substring(program.template.lastIndexOf('/') + 1).trim();
+    // Check for any errors in the template
+    checkTemplateError(program);
+    createPlainComponent(program, templates);
 
-      if (!fs.existsSync(program.template)) {
-        error('', `[Nucleus] Could not locate the template file: ${program.template}`);
-      }
-
-      if (!program.templateFileName.includes('.js')) {
-        error(null, '[Nucleus] The template file must be a valid Javascript (.js) file.');
-      }
-    }
-
-    // Try creating plain first because it does not require a dir
-    if (template.plain) {
-      if (template.style) {
-        execSync(`echo "${templates.style}" > ${program.out}/${program.name}.js && touch ${program.out}/${program.name}.css`);
-      } else if (program.functional) {
-        execSync(`echo "${templates.functional}" > ${program.out}/${program.name}.js`);
-      } else {
-        execSync(`echo "${templates.default}" > ${program.out}/${program.name}.js`);
-      }
-
-      process.exit(0);
-    }
-
-    /**
-    * Executes CLI commands to create the components
-    */
+    // Executes CLI commands to create the components
     exec(`cd ${program.out} && mkdir -p ${program.name} && cd ./${program.name}`, (err) => {
       if (err) {
         console.log(chalk.red('[Nucleus] Failed to create directory please specify a component name and ensure the folder does not exist!'));
@@ -115,49 +94,11 @@ module.exports = {
         console.log(chalk.green('[Nucleus] Creating Component... \u2713'));
       }
 
-      // Create a custom stylesheet component
-      if (program.style) {
-        console.log(chalk.green('[Nucleus] Creating additional stylesheet! \u2713'));
-        try {
-          execSync(`touch ${program.writePath}/${program.name}.css && echo "${templates.style}" > ${program.writePath}/${program.name}.js`);
-        } catch (styleError) {
-          error(styleError, '[Nucleus] Could not create the React component!');
-          return;
-        }
-      } else {
-        // Create a component with a custom template
-        if (program.template) {
-          try {
-            // This command reads the template and writes a copy to the output directory
-            // then searches and replaces the copy component name with the specified component name
-            execSync(`cat ${program.template} > ${program.writePath}/${program.name}.js | sed -i '' -e 's/${program.templateFileName.substring(0, program.templateFileName.indexOf('.'))}/${program.name}/g' ${program.writePath}/${program.name}.js`);
-          } catch (templateError) {
-            error(templateError, `[Nucleus] Error creating component from template file: ${program.template}`);
-            process.exit(0);
-          }
-        } else {
-          // Create a functional components
-          if (program.functional) {
-            try {
-              console.log(chalk.green('[Nucleus] Creating functional React Component! \u2713'));
-              execSync(`echo "${templates.functional}" > ${program.writePath}/${program.name}.js`);
-            } catch (functionalError) {
-              error(functionalError, '[Nucleus] Could not create functional component!');
-              process.exit(0);
-            }
-          } else {
-            try {
-              // Create the default template
-              execSync(`echo "${templates.default}" > ${program.writePath}/${program.name}.js`);
-            } catch (defaultError) {
-              error(defaultError, '[Nucleus] Could not create default component!');
-              process.exit(0);
-            }
-          }
-        }
-      }
+      // Create the correct component based on cli input
+      create(program, templates);
+
       console.log(chalk.green('[Nucleus] Done!'));
     });
-  }
+  },
 
 };

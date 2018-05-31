@@ -1,32 +1,34 @@
 /**
- *  Handles Generating templates and returning an object containing them
+ * Handles Generating templates and returning an object containing them
+ * @param name String the name of the component
+ * @return object object containing the three templates filled with the component Name
  */
-module.exports = (config) => {
+module.exports = (name) => {
   // The react template which uses custom styles
   const templateStyle = `import React, { Component } from 'react';
-  import './${config.name}.css';
+  import './${name}.css';
 
-  export default class ${config.name} extends Component {
+  export default class ${name} extends Component {
     render() {
-        return <h1>${config.name}</h1>
+        return <h1>${name}</h1>
     }
   }`;
   // React template that does NOT include styles
   const templateOriginal = `import React, { Component } from 'react';
 
-  export default class ${config.name} extends Component {
+  export default class ${name} extends Component {
     render() {
-        return <h1>${config.name}</h1>
+        return <h1>${name}</h1>
     }
   }`;
 
   const templateFunctional = `import React from ‘react’;
 
-  const ${config.name} = () => (
-   <div>${config.name}</div>
+  const ${name} = () => (
+   <div>${name}</div>
   );
 
-  export default ${config.name};`;
+  export default ${name};`;
 
   return {
     style: templateStyle,
