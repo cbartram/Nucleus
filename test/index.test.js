@@ -1,5 +1,4 @@
 const { expect } = require('chai');
-const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const firstToCaps = require('../src/capitalize');
@@ -15,44 +14,43 @@ const createTemplateComponent = require('../src/exec/createTemplateComponent');
 const createStyledComponent = require('../src/exec/createStyledComponent');
 
 describe('Nucleus - Tests', () => {
-
   // Remove Components
   afterEach(() => {
     const component = fs.existsSync(path.join(OUT_PATH, 'Foo.js'));
     const stylesheet = fs.existsSync(path.join(OUT_PATH, 'Foo.css'));
 
-    if(component) fs.unlinkSync(path.join(OUT_PATH, 'Foo.js'));
-    if(stylesheet) fs.unlinkSync(path.join(OUT_PATH, 'Foo.css'))
+    if (component) fs.unlinkSync(path.join(OUT_PATH, 'Foo.js'));
+    if (stylesheet) fs.unlinkSync(path.join(OUT_PATH, 'Foo.css'));
   });
 
   describe('Template React Component Tests', () => {
     it('Creates a Template React Component', (done) => {
-        createTemplateComponent({
-          template: path.join(OUT_PATH, 'Template/Template.js'),
-          writePath: OUT_PATH,
-          name: 'Foo',
-          templateFileName: 'Foo.js'
-        })
+      createTemplateComponent({
+        template: path.join(OUT_PATH, 'Template/Template.js'),
+        writePath: OUT_PATH,
+        name: 'Foo',
+        templateFileName: 'Foo.js',
+      });
 
-        // Test the file and template are the same
-        expect(fs.existsSync(path.join(OUT_PATH, 'Foo.js'))).to.be.a('boolean').that.equals(true);
-        expect(fs.statSync(path.join(OUT_PATH, 'Foo.js')).size).to.be.a('number').that.equals(202);
-        done();
+      // Test the file and template are the same
+      expect(fs.existsSync(path.join(OUT_PATH, 'Foo.js'))).to.be.a('boolean').that.equals(true);
+      expect(fs.statSync(path.join(OUT_PATH, 'Foo.js')).size).to.be.a('number').that.equals(202);
+      done();
     });
   });
 
   describe('Styled Component Tests', () => {
-      it('Creates a React Component and Linked Stylesheet', (done) => {
-        createStyledComponent({
-          writePath: OUT_PATH,
-          name: 'Foo'
-        }, template);
+    it('Creates a React Component and Linked Stylesheet', (done) => {
+      createStyledComponent({
+        writePath: OUT_PATH,
+        name: 'Foo',
+      }, template);
 
-        expect(fs.existsSync(path.join(OUT_PATH, 'Foo.js'))).to.be.a('boolean').that.equals(true);
-        expect(fs.existsSync(path.join(OUT_PATH, 'Foo.css'))).to.be.a('boolean').that.equals(true);
-        expect(fs.statSync(path.join(OUT_PATH, 'Foo.js')).size).to.be.a('number').that.equals(165);
-        done();
-      });
+      expect(fs.existsSync(path.join(OUT_PATH, 'Foo.js'))).to.be.a('boolean').that.equals(true);
+      expect(fs.existsSync(path.join(OUT_PATH, 'Foo.css'))).to.be.a('boolean').that.equals(true);
+      expect(fs.statSync(path.join(OUT_PATH, 'Foo.js')).size).to.be.a('number').that.equals(165);
+      done();
+    });
   });
 
   describe('Plain React Component Tests', () => {
@@ -94,7 +92,7 @@ describe('Nucleus - Tests', () => {
         style: false,
         functional: true,
         name: 'Foo',
-        out: OUT_PATH
+        out: OUT_PATH,
       }, template, false);
 
       expect(fs.existsSync(path.join(OUT_PATH, 'Foo.js'))).to.be.a('boolean').that.equals(true);

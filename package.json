@@ -1,6 +1,6 @@
 {
   "name": "react-nucleus",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Nucleus creates basic react components for you quickly and simply!",
   "repository": "https://github.com/cbartram/Nucleus",
   "main": "./src/index.js",
@@ -49,7 +49,8 @@
     "extends": "airbnb-base",
     "globals": {
       "describe": true,
-      "it": true
+      "it": true,
+      "afterEach": true
     },
     "rules": {
       "no-console": 0,
