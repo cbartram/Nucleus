@@ -24,7 +24,8 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "is-valid-var-name": "^1.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

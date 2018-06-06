@@ -6,7 +6,7 @@ const { execSync } = require('child_process');
  * @param program Object commander program object (parsed cli commands)
  * @param templates Object Templates object to use to create the component (filled with the component name)
  */
-const createPlainComponent = (program, templates) => {
+const createPlainComponent = (program, templates, exit = true) => {
   if (program.plain) {
     if (program.style) {
       execSync(`echo "${templates.style}" > ${program.out}/${program.name}.js && touch ${program.out}/${program.name}.css`);
@@ -15,8 +15,11 @@ const createPlainComponent = (program, templates) => {
     } else {
       execSync(`echo "${templates.default}" > ${program.out}/${program.name}.js`);
     }
-    // Exit once complete because we dont want to hit the other exec statement in nucleus.js
-    process.exit(0);
+    
+    if(exit) {
+      // Exit once complete because we dont want to hit the other exec statement in nucleus.js
+      process.exit(0);
+    }
   }
 }
 

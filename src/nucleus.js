@@ -3,6 +3,7 @@ const template = require('./template');
 const error = require('./error');
 const { exec } = require('child_process');
 const program = require('commander');
+const isVarName = require('is-valid-var-name');
 
 // Modules to create components
 const checkTemplateError = require('./exec/checkTemplateError');
@@ -55,6 +56,10 @@ module.exports = {
       error(null, '[Nucleus] The --name flag is required.');
     }
 
+    if (!isVarName(program.name)) {
+      error(null, `[Nucleus] ${program.name} is not a valid ES6 Class Name`);
+    }
+
     if (program.style && program.template) {
       error(null, '[Nucleus] Cannot use both --template and --style');
     }
@@ -70,6 +75,7 @@ module.exports = {
     if (program.style && program.functional) {
       error(null, '[Nucleus] Cannot use both --style and --functional');
     }
+
 
     // Create template initialization
     const templates = template(program.name);
